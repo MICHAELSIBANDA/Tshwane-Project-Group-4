@@ -1,49 +1,97 @@
+import { NavLink, useNavigate } from "react-router-dom";
+
 const Sidebar = () => {
+
+  const navigate = useNavigate();
+
+
+  const handleLogout = () => {
+
+    localStorage.clear();
+
+    navigate("/");
+
+  };
+
 
   return (
 
     <div className="sidebar">
 
-      <h2 className="logo">
-        BusLink
-      </h2>
+
+      <div>
+
+        <h2 className="logo">
+          BusLink
+        </h2>
 
 
-      <ul>
+        <ul>
 
-        <li>
-          Dashboard
-        </li>
+          <li>
+            <NavLink to="/admin">
+              Dashboard
+            </NavLink>
+          </li>
 
-        <li>
-          Users
-        </li>
 
-        <li>
-          Drivers
-        </li>
+          <li>
+            <NavLink to="/admin/users">
+              Users
+            </NavLink>
+          </li>
 
-        <li>
-          Buses
-        </li>
 
-        <li>
-          Schedules
-        </li>
+          <li>
+            <NavLink to="/admin/drivers">
+              Drivers
+            </NavLink>
+          </li>
 
-        <li>
-          Complaints
-        </li>
 
-        <li>
-          Delays
-        </li>
+          <li>
+            <NavLink to="/admin/buses">
+              Buses
+            </NavLink>
+          </li>
 
-        <li>
-          Reports
-        </li>
 
-      </ul>
+          <li>
+            <NavLink to="/admin/schedules">
+              Schedules
+            </NavLink>
+          </li>
+
+
+          <li>
+            <NavLink to="/admin/complaints">
+              Complaints
+            </NavLink>
+          </li>
+
+
+          <li>
+            <NavLink to="/admin/reports">
+              Reports
+            </NavLink>
+          </li>
+
+
+        </ul>
+
+      </div>
+
+
+      <div className="sidebar-bottom">
+
+        <button
+          className="sidebar-logout"
+          onClick={handleLogout}
+        >
+          Logout
+        </button>
+
+      </div>
 
 
     </div>

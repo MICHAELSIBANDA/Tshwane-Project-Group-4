@@ -13,6 +13,7 @@ body {
   background: #f4f6f9;
 }
 
+
 /* ==========================
    DASHBOARD LAYOUT
 ========================== */
@@ -23,303 +24,476 @@ body {
   background: #f4f6f9;
 }
 
+
 /* ==========================
    SIDEBAR
 ========================== */
 
 .sidebar {
+
   width: 250px;
+
+  min-height: 100vh;
+
   background: #0B6E4F;
+
   color: white;
+
   display: flex;
+
   flex-direction: column;
+
   padding: 25px;
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.15);
+
+  box-shadow: 2px 0 10px rgba(0,0,0,0.15);
+
 }
+
 
 .logo {
+
   color: #D4AF37;
+
   font-size: 28px;
+
   font-weight: bold;
+
   margin-bottom: 40px;
+
   text-align: center;
+
 }
+
 
 .sidebar ul {
+
   list-style: none;
+
 }
+
 
 .sidebar li {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+
   padding: 15px;
+
   margin-bottom: 10px;
+
   border-radius: 10px;
+
   cursor: pointer;
-  transition: all 0.3s ease;
+
+  transition: 0.3s;
+
 }
+
 
 .sidebar li:hover {
+
   background: #D4AF37;
-  color: white;
+
 }
 
-.logout {
-  margin-top: auto;
-  background: #D4AF37;
+
+/* Sidebar Links */
+
+.sidebar a {
+
   color: white;
-  border: none;
-  padding: 14px;
+
+  text-decoration: none;
+
+  display: block;
+
+}
+
+
+.sidebar a.active {
+
+  background: #D4AF37;
+
+  padding: 15px;
+
   border-radius: 10px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: 0.3s;
+
 }
 
-.logout:hover {
-  background: #b8931d;
+
+/* ==========================
+   LOGOUT BUTTON
+========================== */
+
+.sidebar-logout {
+
+  margin-top: auto;
+
+  width: 100%;
+
+  background: #dc3545;
+
+  color: white;
+
+  border: none;
+
+  padding: 14px;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  font-size: 16px;
+
+  font-weight: 600;
+
+  transition: 0.3s;
+
 }
+
+
+.sidebar-logout:hover {
+
+  background: #D4AF37;
+
+}
+
+
 
 /* ==========================
    MAIN CONTENT
 ========================== */
 
 .main {
+
   flex: 1;
+
   padding: 30px;
+
 }
+
+
 
 /* ==========================
    TOPBAR
 ========================== */
 
 .topbar {
+
   display: flex;
+
   justify-content: space-between;
+
   align-items: center;
+
   margin-bottom: 35px;
+
 }
+
 
 .topbar h1 {
+
   color: #0B6E4F;
+
   font-size: 30px;
+
 }
+
 
 .admin-profile {
+
   display: flex;
+
   align-items: center;
+
   gap: 12px;
+
   font-weight: 600;
+
   color: #333;
+
 }
 
+
 .profile-icon {
+
   font-size: 42px;
+
   color: #0B6E4F;
+
 }
+
+
 
 /* ==========================
    DASHBOARD CARDS
 ========================== */
 
 .cards {
+
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+
   gap: 20px;
+
 }
+
 
 .card {
+
   background: white;
+
   border-radius: 15px;
+
   padding: 25px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+
   border-left: 6px solid #D4AF37;
-  transition: all 0.3s ease;
+
+  transition: 0.3s;
+
 }
+
 
 .card:hover {
+
   transform: translateY(-5px);
+
 }
+
 
 .card h2 {
-  color: #0B6E4F;
-  font-size: 34px;
-  margin-bottom: 10px;
+
+  color:#0B6E4F;
+
+  font-size:34px;
+
 }
 
+
 .card p {
-  color: #666;
-  font-size: 16px;
+
+  color:#666;
+
 }
+
+
 
 /* ==========================
    TABLES
 ========================== */
 
 .table-container {
-  background: white;
-  margin-top: 30px;
-  padding: 25px;
-  border-radius: 15px;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+
+  background:white;
+
+  margin-top:30px;
+
+  padding:25px;
+
+  border-radius:15px;
+
+  box-shadow:0 8px 18px rgba(0,0,0,0.08);
+
 }
+
 
 .table-container h2 {
-  color: #0B6E4F;
-  margin-bottom: 20px;
+
+  color:#0B6E4F;
+
+  margin-bottom:20px;
+
 }
+
 
 table {
-  width: 100%;
-  border-collapse: collapse;
+
+  width:100%;
+
+  border-collapse:collapse;
+
 }
+
 
 table th {
-  background: #0B6E4F;
-  color: white;
-  padding: 14px;
-  text-align: left;
+
+  background:#0B6E4F;
+
+  color:white;
+
+  padding:14px;
+
+  text-align:left;
+
 }
+
 
 table td {
-  padding: 14px;
-  border-bottom: 1px solid #ddd;
+
+  padding:14px;
+
+  border-bottom:1px solid #ddd;
+
 }
 
+
 table tr:hover {
-  background: #f8f8f8;
+
+  background:#f8f8f8;
+
 }
+
+
 
 /* ==========================
    BUTTONS
 ========================== */
 
 .btn {
-  padding: 10px 18px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  color: white;
-  transition: all 0.3s ease;
+
+  padding:10px 18px;
+
+  border:none;
+
+  border-radius:8px;
+
+  cursor:pointer;
+
+  color:white;
+
 }
+
 
 .btn-add {
-  background: #0B6E4F;
+
+  background:#0B6E4F;
+
 }
 
-.btn-add:hover {
-  background: #09563d;
-}
 
 .btn-edit {
-  background: #D4AF37;
+
+  background:#D4AF37;
+
 }
 
-.btn-edit:hover {
-  background: #b8931d;
-}
 
 .btn-delete {
-  background: #dc3545;
+
+  background:red;
+
 }
 
-.btn-delete:hover {
-  background: #b52a37;
-}
+
 
 /* ==========================
    FORMS
 ========================== */
 
 .form-container {
-  background: white;
-  padding: 25px;
-  border-radius: 15px;
-  margin-top: 30px;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+
+  background:white;
+
+  padding:25px;
+
+  border-radius:15px;
+
+  margin-top:30px;
+
+  box-shadow:0 8px 18px rgba(0,0,0,0.08);
+
 }
 
-.form-container h2 {
-  color: #0B6E4F;
-  margin-bottom: 20px;
-}
 
 .form-group {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 18px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  margin-bottom:18px;
+
 }
 
+
 .form-group label {
-  margin-bottom: 8px;
-  font-weight: 600;
+
+  margin-bottom:8px;
+
+  font-weight:600;
+
 }
+
 
 .form-group input,
 .form-group select,
 .form-group textarea {
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  outline: none;
-  transition: 0.3s;
+
+  padding:12px;
+
+  border:1px solid #ccc;
+
+  border-radius:8px;
+
 }
 
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-  border-color: #0B6E4F;
-}
+
 
 /* ==========================
    RESPONSIVE
 ========================== */
 
-@media (max-width: 900px) {
+@media (max-width:900px) {
+
+
   .dashboard {
-    flex-direction: column;
+
+    flex-direction:column;
+
   }
+
 
   .sidebar {
-    width: 100%;
-    padding: 20px;
+
+    width:100%;
+
+    min-height:auto;
+
   }
+
 
   .main {
-    padding: 20px;
+
+    padding:20px;
+
   }
+
 
   .topbar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:15px;
+
   }
+
 
   .cards {
-    grid-template-columns: 1fr;
+
+    grid-template-columns:1fr;
+
   }
+
 
   table {
-    display: block;
-    overflow-x: auto;
+
+    display:block;
+
+    overflow-x:auto;
+
   }
 
-  .sidebar a {
 
-  text-decoration:none;
-  color:white;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  width:100%;
-
-}
-
-
-.sidebar li:hover a {
-
-  color:white;
-
-}
 }

@@ -1,406 +1,245 @@
 import { useState } from "react";
-import Sidebar from "../components/Sidebar";
-import Topbar from "../components/Topbar";
-
+import SearchBar from "../components/SearchBar";
+import UsersTable from "../components/UsersTable";
 import "../styles/admin.css";
 
+const emptyForm = {
+  name: "",
+  email: "",
+  phone: "",
+  cardNumber: "",
+  balance: 0,
+  accountType: "Student",
+  status: "Active",
+};
 
 const Users = () => {
-
-
   const [users, setUsers] = useState([
-
     {
       id: 1,
-      name: "John Smith",
-      email: "john@gmail.com",
-      role: "Passenger",
-      status: "Active"
+      name: "Liya Gellem",
+      email: "liya@gmail.com",
+      phone: "0821234567",
+      cardNumber: "1001",
+      balance: 250,
+      accountType: "Student",
+      status: "Active",
     },
-
     {
       id: 2,
-      name: "Sarah Adams",
-      email: "sarah@gmail.com",
-      role: "Driver",
-      status: "Active"
+      name: "Tebza Nkosi",
+      email: "tebza@gmail.com",
+      phone: "0837654321",
+      cardNumber: "1002",
+      balance: 120,
+      accountType: "Student",
+      status: "Active",
     },
-
     {
       id: 3,
-      name: "Admin User",
-      email: "admin@buslink.com",
-      role: "Admin",
-      status: "Active"
-    }
-
+      name: "Sihle Ngena",
+      email: "sihle@gmail.com",
+      phone: "0845558899",
+      cardNumber: "1003",
+      balance: 0,
+      accountType: "Staff",
+      status: "Suspended",
+    },
   ]);
 
+  const [form, setForm] = useState(emptyForm);
+  const [showForm, setShowForm] = useState(false);
+  const [search, setSearch] = useState("");
+  const [editingUser, setEditingUser] = useState(null);
 
+  const handleEdit = (user) => {
+    setEditingUser(user);
+    setForm(user);
+    setShowForm(true);
+  };
 
-  const [newUser, setNewUser] = useState({
+  const handleDelete = (id) => {
+    if (window.confirm("Delete this user?")) {
+      setUsers(users.filter((user) => user.id !== id));
+    }
+  };
 
-    name:"",
-    email:"",
-    role:"Passenger",
-    status:"Active"
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  });
-
-
-
-  // ADD USER
-
-  const addUser = () => {
-
-
-    if(!newUser.name || !newUser.email){
-      alert("Please fill all fields");
+    if (!form.name || !form.email || !form.phone) {
+      alert("Please complete all required fields.");
       return;
     }
 
-
-    setUsers([
-
-      ...users,
-
-      {
-        id: Date.now(),
-        ...newUser
-      }
-
-    ]);
-
-
-
-    setNewUser({
-
-      name:"",
-      email:"",
-      role:"Passenger",
-      status:"Active"
-
-    });
-
-
-  };
-
-
-
-
-
-  // DELETE USER
-
-  const deleteUser = (id)=>{
-
-
-    setUsers(
-
-      users.filter(
-        user => user.id !== id
-      )
-
-    );
-
-
-  };
-
-
-
-
-
-  return (
-
-    <div className="dashboard">
-
-
-      <Sidebar />
-
-
-      <div className="main">
-
-
-        <Topbar />
-
-
-
-        <div className="table-container">
-
-
-          <h2>
-            User Management
-          </h2>
-
-
-
-
-          {/* ADD USER FORM */}
-
-          <div className="form-container">
-
-
-            <div className="form-group">
-
-              <label>
-                Name
-              </label>
-
-              <input
-
-                type="text"
-
-                placeholder="Enter user name"
-
-                value={newUser.name}
-
-                onChange={(e)=>
-
-                  setNewUser({
-
-                    ...newUser,
-
-                    name:e.target.value
-
-                  })
-
-                }
-
-              />
-
-            </div>
-
-
-
-
-
-            <div className="form-group">
-
-              <label>
-                Email
-              </label>
-
-
-              <input
-
-                type="email"
-
-                placeholder="Enter email"
-
-                value={newUser.email}
-
-                onChange={(e)=>
-
-                  setNewUser({
-
-                    ...newUser,
-
-                    email:e.target.value
-
-                  })
-
-                }
-
-              />
-
-            </div>
-
-
-
-
-
-            <div className="form-group">
-
-
-              <label>
-                Role
-              </label>
-
-
-              <select
-
-                value={newUser.role}
-
-                onChange={(e)=>
-
-                  setNewUser({
-
-                    ...newUser,
-
-                    role:e.target.value
-
-                  })
-
-                }
-
-              >
-
-
-                <option>
-                  Passenger
-                </option>
-
-
-                <option>
-                  Driver
-                </option>
-
-
-                <option>
-                  Admin
-                </option>
-
-
-              </select>
-
-
-            </div>
-
-
-
-
-            <button
-
-              className="btn btn-add"
-
-              onClick={addUser}
-
-            >
-
-              Add User
-
-            </button>
-
-
-
-          </div>
-
-
-
-
-
-          {/* USERS TABLE */}
-
-
-          <table>
-
-
-            <thead>
-
-              <tr>
-
-                <th>
-                  Name
-                </th>
-
-
-                <th>
-                  Email
-                </th>
-
-
-                <th>
-                  Role
-                </th>
-
-
-                <th>
-                  Status
-                </th>
-
-
-                <th>
-                  Action
-                </th>
-
-
-              </tr>
-
-
-            </thead>
-
-
-
-
-            <tbody>
-
-
-              {
-
-                users.map(user=>(
-
-
-                  <tr key={user.id}>
-
-
-                    <td>
-                      {user.name}
-                    </td>
-
-
-                    <td>
-                      {user.email}
-                    </td>
-
-
-                    <td>
-                      {user.role}
-                    </td>
-
-
-                    <td>
-                      {user.status}
-                    </td>
-
-
-
-                    <td>
-
-
-                      <button
-
-                        className="btn btn-delete"
-
-                        onClick={()=>
-                          deleteUser(user.id)
-                        }
-
-                      >
-
-                        Delete
-
-                      </button>
-
-
-                    </td>
-
-
-                  </tr>
-
-
-                ))
-
+    if (editingUser) {
+      setUsers(
+        users.map((user) =>
+          user.id === editingUser.id
+            ? {
+                ...form,
+                id: editingUser.id,
+                balance: Number(form.balance),
               }
+            : user
+        )
+      );
+    } else {
+      setUsers([
+        ...users,
+        {
+          ...form,
+          id: Date.now(),
+          balance: Number(form.balance),
+        },
+      ]);
+    }
 
+    setForm(emptyForm);
+    setEditingUser(null);
+    setShowForm(false);
+  };
 
-            </tbody>
+  const handleCancel = () => {
+    setForm(emptyForm);
+    setEditingUser(null);
+    setShowForm(false);
+  };
 
+  const filteredUsers = users.filter(
+    (user) =>
+      user.name.toLowerCase().includes(search.toLowerCase()) ||
+      user.email.toLowerCase().includes(search.toLowerCase()) ||
+      user.cardNumber.toLowerCase().includes(search.toLowerCase()) ||
+      user.accountType.toLowerCase().includes(search.toLowerCase())
+  );
+  
+    return (
+    <div className="table-container">
+      <div className="section-header">
+        <h2>User Management</h2>
 
-          </table>
-
-
-
-        </div>
-
-
-
+        <button
+          className="btn btn-add"
+          onClick={() => (showForm ? handleCancel() : setShowForm(true))}
+        >
+          {showForm ? "Close Form" : "+ Add User"}
+        </button>
       </div>
 
+      {showForm && (
+        <form className="form-container" onSubmit={handleSubmit}>
+          <h3>{editingUser ? "Edit User" : "Register New User"}</h3>
 
+          <div className="form-group">
+            <label>Full Name</label>
+            <input
+              placeholder="Enter full name"
+              value={form.name}
+              onChange={(e) =>
+                setForm({ ...form, name: e.target.value })
+              }
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Email Address</label>
+            <input
+              type="email"
+              placeholder="example@gmail.com"
+              value={form.email}
+              onChange={(e) =>
+                setForm({ ...form, email: e.target.value })
+              }
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Phone Number</label>
+            <input
+              placeholder="0821234567"
+              value={form.phone}
+              onChange={(e) =>
+                setForm({ ...form, phone: e.target.value })
+              }
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Digital Bus Card Number</label>
+            <input
+              placeholder="1004"
+              value={form.cardNumber}
+              onChange={(e) =>
+                setForm({ ...form, cardNumber: e.target.value })
+              }
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Bus Card Balance (R)</label>
+            <input
+              type="number"
+              min="0"
+              value={form.balance}
+              onChange={(e) =>
+                setForm({ ...form, balance: e.target.value })
+              }
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Account Type</label>
+
+            <select
+              value={form.accountType}
+              onChange={(e) =>
+                setForm({ ...form, accountType: e.target.value })
+              }
+            >
+              <option>Student</option>
+              <option>Staff</option>
+              <option>Senior Citizen</option>
+              <option>Guest</option>
+            </select>
+          </div>
+
+          <div className="form-group">
+            <label>Status</label>
+
+            <select
+              value={form.status}
+              onChange={(e) =>
+                setForm({ ...form, status: e.target.value })
+              }
+            >
+              <option>Active</option>
+              <option>Suspended</option>
+              <option>Blocked</option>
+            </select>
+          </div>
+
+          <button className="btn btn-add" type="submit">
+            {editingUser ? "Update User" : "Save User"}
+          </button>
+        </form>
+      )}
+
+      <SearchBar
+        search={search}
+        setSearch={setSearch}
+        placeholder="Search by name, email, card or account type..."
+      />
+
+      <UsersTable
+        users={filteredUsers}
+        onEdit={handleEdit}
+        onDelete={handleDelete}
+      />
+
+      
     </div>
-
   );
-
 };
-
 
 export default Users;
